@@ -59,6 +59,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'moll/vim-bbye'
 Plugin 'tpope/vim-fugitive'
+Plugin 'ntpeters/vim-better-whitespace'
 Bundle 'nanotech/jellybeans.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
