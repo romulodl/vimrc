@@ -21,8 +21,6 @@ set splitright
 set ruler
 set wildmenu
 set showmatch
-"rubocop checker for ruby files
-let g:syntastic_ruby_checkers = ['rubocop']
 "command W and Q if error press 
 command W w
 command WQ wq
@@ -36,7 +34,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 "para los archivos ruby los tabs son de 2 espacios
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2 et
-autocmd FileType javascript setlocal ts=2 sts=2 sw=2 noet
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -46,30 +44,23 @@ set laststatus=2
 set timeoutlen=50
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-Plugin 'bling/vim-airline'
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'xsbeats/vim-blade'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'moll/vim-bbye'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'joonty/vim-phpunitqf'
-Bundle 'nanotech/jellybeans.vim'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 set background=dark
-silent! colorscheme jellybeans
+silent! colorscheme PaperColor
 syntax on
 set t_Co=256
 set nu
 set tabstop=4 shiftwidth=4 expandtab
-
+set backspace=indent,eol,start
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+let g:ale_php_phpcs_executable='~/.composer/vendor/bin/phpcs'
+let g:ale_php_php_cs_fixer_executable='~/.composer/vendor/bin/php-cs-fixer'
+let g:ale_fixers = {'php': ['php_cs_fixer']}
+let g:ale_fix_on_save=1
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
